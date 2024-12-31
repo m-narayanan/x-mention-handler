@@ -57,6 +57,6 @@ This project automates the process of detecting mentions on X (formerly Twitter)
 - Error handling is implemented, but additional checks might be needed for robustness.
 
 ## License
-[Choose your license or mention that it's for educational purposes only]
+[it's for educational purposes only]
 
 ---
