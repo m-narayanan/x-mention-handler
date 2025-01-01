@@ -1,4 +1,3 @@
-markdown
 # X Automated Mention Handler
 
 ## Overview
