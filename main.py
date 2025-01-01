@@ -65,9 +65,11 @@ def take_screenshot(driver, url, output_path):
     main_content = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "(//div[@class='css-175oi2r r-1f2l425 r-13qz1uu r-417010 r-18u37iz'])[1]")))
     location = main_content.location
     size = main_content.size
-    left, top = int(location['x']) + 490, int(location['y']) + 57
-    right, bottom = int(location['x'] + size['width']) - 250, int(location['y']) + 610
-    cropped_image = full_image.crop((left, top, right, bottom))
+    #adjustable values below (according to environment)
+    left = int(location['x']) + 490  
+    top = int(location['y'])+57
+    right = int(location['x'] + size['width']) - 250  
+    bottom = int(location['y']) + 610
     cropped_image.save(output_path)
     if os.path.exists('temp_full_page.png'):
         os.remove('temp_full_page.png')
@@ -78,7 +80,7 @@ def reply_to_mention(driver, tweet_id, image_path):
     if tweet_id in replied_tweets:
         return
     
-    tweet_url = f"https://x.com/anyuser/status/{tweet_id}"
+    tweet_url = f"https://x.com/{user_name}/status/{tweet_id}"
     driver.get(tweet_url)
     try:
         reply_button = WebDriverWait(driver, 20).until(
@@ -106,6 +108,7 @@ def reply_to_mention(driver, tweet_id, image_path):
 
 def main():
     chrome_options = Options()
+    #chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
